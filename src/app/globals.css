@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.font-helvetica {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Hero section gradient */
+.hero-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 50%, #dbdbdb 100%);
+  position: relative;
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg width='500' height='500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' seed='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 600px 600px;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
+}
+
+.hero-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.10;
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' seed='10' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 480px 480px;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
+}
+
+/* Orange button gradient */
+.btn-orange {
+  background: linear-gradient(180deg, #ff9933 0%, #e67a00 100%);
+  border: 1px solid #cc6600;
+  transition: all 0.3s ease;
+}
+
+.btn-orange:hover {
+  background: linear-gradient(180deg, #ffad5c 0%, #ff9933 100%);
+}
+
+/* Service cards */
+.service-card {
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Shelf styling */
+.shelf {
+  position: relative;
+  background: linear-gradient(180deg, #8B6914 0%, #6B4F12 30%, #4a3610 100%);
+  height: 20px;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.shelf::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(180deg, #a07a1a 0%, #8B6914 100%);
+  border-radius: 4px 4px 0 0;
+}
+
+.shelf::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 5%;
+  right: 5%;
+  height: 8px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 100%);
+}
+
+/* Flipbook container */
+.flipbook-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Turn.js styles */
+.turnjs-page {
+  background: white;
+}
+
+.turnjs-hard {
+  background: #2c3e50;
+  color: white;
+}
+
+/* Workflow section – metallic orange knurled */
+.workflow-section {
+  background:
+    linear-gradient(180deg, #ff9933 0%, #e67a00 100%);
+  position: relative;
+}
+
+/* fine knurl layer – small diamond pattern */
+.workflow-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.30;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='k1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k1)'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* cross-hatch knurl layer – larger diagonal grid */
+.workflow-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Contact section – metallic gray knurled */
+.contact-section {
+  background: linear-gradient(180deg, #505050 0%, #353535 50%, #252525 100%);
+  border: 1px solid #333;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+  position: relative;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.65;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='5' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c1)'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.contact-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.18) 0px,
+      rgba(255,255,255,0.18) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.18) 0px,
+      rgba(255,255,255,0.18) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Contact form section – light metallic */
+.contact-form-section {
+  background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
+  border: 1px solid #bbb;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+  position: relative;
+}
+
+.contact-form-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='cf1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cf1)'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.contact-form-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 5px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 5px);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .flipbook-container {
+    max-width: 100%;
+  }
+}
