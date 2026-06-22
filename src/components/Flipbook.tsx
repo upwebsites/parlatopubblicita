@@ -31,6 +31,25 @@ export default function Flipbook({
   const [coverImage, setCoverImage] = useState<string | null>(null);
   const [pdfPages, setPdfPages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [fbSize, setFbSize] = useState({ w: 800, h: 560 });
+
+  useEffect(() => {
+    const updateSize = () => {
+      const vw = window.innerWidth;
+      if (vw < 480) {
+        const w = Math.min(vw - 32, 360);
+        setFbSize({ w, h: Math.round(w * 0.7) });
+      } else if (vw < 768) {
+        const w = Math.min(vw - 48, 500);
+        setFbSize({ w, h: Math.round(w * 0.7) });
+      } else {
+        setFbSize({ w: 800, h: 560 });
+      }
+    };
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
 
   const getPdfLib = useCallback(async () => {
     const pdfjsLib = await import("pdfjs-dist");
@@ -130,10 +149,10 @@ export default function Flipbook({
     const node = flipbookRef.current;
 
     $el.turn({
-      width: 800,
-      height: 560,
+      width: fbSize.w,
+      height: fbSize.h,
       autoCenter: true,
-      display: "double",
+      display: window.innerWidth < 640 ? "single" : "double",
       duration: 800,
       gradients: true,
       elevation: 50,
@@ -147,7 +166,16 @@ export default function Flipbook({
         }
       }
     };
-  }, [isOpen, scriptsLoaded, pdfPages, loading]);
+  }, [isOpen, scriptsLoaded, pdfPages, loading, fbSize]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   const handleOpen = async () => {
     setIsOpen(true);
@@ -193,8 +221,7 @@ export default function Flipbook({
   return (
     <>
       <div
-        className="relative cursor-pointer group"
-        style={{ width: 120, height: 160 }}
+        className="relative cursor-pointer group w-[80px] h-[107px] sm:w-[100px] sm:h-[133px] md:w-[120px] md:h-[160px]"
         onClick={handleOpen}
       >
         <div
@@ -226,16 +253,17 @@ export default function Flipbook({
           style={{
             position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 9999,
             display: "flex", alignItems: "center", justifyContent: "center",
+            overflow: "auto",
             background: "radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%)",
             opacity: visible ? 1 : 0, transition: "opacity 0.35s ease-out",
           }}
           onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
         >
           <div style={{ position: "relative", opacity: visible ? 1 : 0, transform: visible ? "scale(1)" : "scale(0.85)", transition: "opacity 0.4s ease-out, transform 0.4s ease-out" }}>
-            <div style={{ overflow: "hidden", height: 560 }}>
+            <div style={{ overflow: "hidden", height: fbSize.h }}>
               <div style={{ display: "flex", justifyContent: "center", padding: "1.5rem 1.5rem 0 1.5rem" }}>
                 {loading ? (
-                  <div style={{ width: 800, height: 560, display: "flex", alignItems: "center", justifyContent: "center", color: "white", flexDirection: "column", gap: "0.5rem" }}>
+                  <div style={{ width: fbSize.w, height: fbSize.h, display: "flex", alignItems: "center", justifyContent: "center", color: "white", flexDirection: "column", gap: "0.5rem" }}>
                     <div>Caricamento pagine...</div>
                     <div style={{ fontSize: "0.75rem", opacity: 0.6 }}>{pdfPages.length} pagine caricate</div>
                   </div>
@@ -243,7 +271,7 @@ export default function Flipbook({
                   <div
                     ref={flipbookRef}
                     style={{
-                      overflow: "hidden", width: 800, height: 560,
+                      overflow: "hidden", width: fbSize.w, height: fbSize.h,
                       transform: `scale(${zoom})`, transformOrigin: "center center",
                       transition: "transform 0.2s ease-out",
                     }}

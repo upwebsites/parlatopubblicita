@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function WorkflowSection() {
   return (
     <section
-      className="workflow-section relative py-14 mx-auto max-w-7xl my-12 rounded-xl"
+      className="workflow-section relative py-14 mx-auto max-w-7xl my-20 px-4 rounded-xl"
       style={{
         border: "2px solid #b35c00",
         boxShadow: "0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15)",

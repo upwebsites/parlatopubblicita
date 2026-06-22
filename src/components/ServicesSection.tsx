@@ -16,12 +16,12 @@ export default function ServicesSection() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-4xl mx-auto">
           {/* Tab menu */}
-          <div className="flex justify-center gap-6 md:gap-10 mb-12">
+          <div className="flex justify-center gap-3 sm:gap-6 md:gap-10 mb-6 md:mb-12">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2 rounded-full text-sm md:text-base font-normal transition-all duration-300 cursor-pointer font-helvetica ${
+                className={`px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm md:text-base font-normal transition-all duration-300 cursor-pointer font-helvetica ${
                   activeTab === tab.id
                     ? "bg-black text-white"
                     : "text-gray-500 hover:text-gray-800"
@@ -34,9 +34,9 @@ export default function ServicesSection() {
 
           {/* Image area */}
           <div className="flex justify-center">
-            <div className="w-full max-w-2xl h-80 flex items-center justify-center">
+            <div className="w-full max-w-2xl h-40 sm:h-56 md:h-80 flex items-center justify-center">
               {activeTab === "brochure" && (
-                <img src="/images/brochure.png" alt="Brochure" className="max-w-full h-full object-contain scale-125" />
+                <img src="/images/brochure.png" alt="Brochure" className="max-w-full h-full object-contain md:scale-125 scale-110" />
               )}
               {activeTab === "riviste" && (
                 <img src="/images/riviste.png" alt="Riviste" className="max-w-full max-h-full object-contain" />

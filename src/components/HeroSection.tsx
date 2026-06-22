@@ -38,8 +38,8 @@ export default function HeroSection() {
 
           {/* Right side - Image placeholder */}
           <div className="flex justify-center lg:justify-start order-2 lg:order-2">
-            <div className="relative w-96 h-96 lg:w-[500px] lg:h-[500px]">
-              <img src="/images/copertina.png" alt="Copertina" className="w-full h-full object-contain scale-150" />
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[500px] lg:h-[500px]">
+              <img src="/images/copertina.png" alt="Copertina" className="w-full h-full object-contain md:scale-150 scale-125" />
             </div>
           </div>
         </div>

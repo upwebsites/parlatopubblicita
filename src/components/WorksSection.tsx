@@ -33,21 +33,21 @@ export default function WorksSection() {
         </h2>
 
         <div className="mb-16 flex flex-col items-center">
-          <div className="relative flex items-end justify-center gap-4 -mb-2.5">
+          <div className="relative flex items-end justify-center gap-2 sm:gap-4 -mb-2.5">
             {shelf1.map((book) => (
               <Flipbook key={book.id} bookId={book.id} pdfSrc={book.pdf} title={book.title} />
             ))}
           </div>
-          <Image src="/wall-bookshelf.png" alt="Scaffale" width={500} height={44} className="h-auto" />
+          <Image src="/wall-bookshelf.png" alt="Scaffale" width={500} height={44} className="h-auto w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]" />
         </div>
 
         <div className="mb-8 flex flex-col items-center">
-          <div className="relative flex items-end justify-center gap-4 -mb-2.5">
+          <div className="relative flex items-end justify-center gap-2 sm:gap-4 -mb-2.5">
             {shelf2.map((book) => (
               <Flipbook key={book.id} bookId={book.id} pdfSrc={book.pdf} title={book.title} />
             ))}
           </div>
-          <Image src="/wall-bookshelf.png" alt="Scaffale" width={500} height={44} className="h-auto" />
+          <Image src="/wall-bookshelf.png" alt="Scaffale" width={500} height={44} className="h-auto w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]" />
         </div>
       </div>
     </section>
